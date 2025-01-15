@@ -1,0 +1,4 @@
+index.js가 실행프로젝트.
+
+index.js 하단의 주석(이전코드) -> index-copy.js ->
+app -> hello -> props -> app2 -> app4

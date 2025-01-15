@@ -40,10 +40,22 @@ npm start
 
 
 *git 이동
-git에 node_modules 폴더가 제외되기때문에
+git에 node_modules 폴더가 제외되기때문에(고용량이라서 예외목록 등록됨)
 터미널에 npm install 입력하면 package.json에 등록된 라이브러리가 자동 설치된다.
 
 
 
 
-
+*확장프로그램
+ ㅇ Material Icon Theme 설치 (검색창뜨면 상단 클릭)
+ ㅇ reactjs code snippet 설치 (jsx에서 rsf치면 기본코드 자동생성, 그외 단축코드는 메뉴보기)
+ ㅇ ctrl + shift + p
+  - open user setting.json
+  - 다음 입력
+	앞에 코드에 ,콤마찍고
+	 "emmet.syntaxProfiles": {
+	     "javascript": "jsx" 
+	 },
+	 "emmet.includeLanguages": {
+	    "javascript": "html"
+	}

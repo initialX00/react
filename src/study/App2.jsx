@@ -12,19 +12,30 @@ import { useState } from "react";
 function App2() {
     const [num, setNum] = useState(0); //비구조할당
     //첫번쨰 요소가 일반 변수, 두번째 요소가 setter함수를 나타낸다.
+    //useState의 ()안의 값은 초기값을 나타낸다. 0, ""
+
+    let number = 0;
 
     console.log(num);
-
+    console.log(number);
+    
     const handleIncreaseOnClick = () => {
-        setNum(num + 1);
+        num < 9 ? setNum(num + 1) : setNum(num);
     }
+
+    const handleDecreaseOnClick = () => {
+        num > 0 ? setNum(num - 1) : setNum(num);
+    }
+
+
     //num이 아니라 setNum으로 값을 변경한다. setter함수로 생각하자.
     //useState는 외부메모리이기에 setter가 필요하다.
+
 
     return <>
         <h1>{num}</h1>
         <button onClick={handleIncreaseOnClick}>1증가</button>
-        <button>1감소</button>
+        <button onClick={handleDecreaseOnClick}>1감소</button>
     </>
 }
 
