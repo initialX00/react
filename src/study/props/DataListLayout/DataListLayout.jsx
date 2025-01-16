@@ -10,6 +10,35 @@ function DataListLayout({ children }) {
         <li>8번리스트</li>,
     ];
 
+    const handle = () => {
+            return liList.map((list, index) =>
+                <li key={index}>{"2" + list.props.children}</li>
+            );
+    }
+
+
+    const bookList = [
+        {
+            name: "1권",
+            author: "1저자",
+            publisher: "1출판사",
+        },
+        {
+            name: "2권",
+            author: "2저자",
+            publisher: "2출판사",
+        }
+    ];
+
+    const handle2 = () => {
+            return bookList.map((book) =>
+            <tr>
+                <td>{book.name}</td>
+                <td>{book.author}</td>
+                <td>{book.publisher}</td>
+            </tr>
+            );
+    }
 
     return <ul>
         {children}
@@ -22,8 +51,20 @@ function DataListLayout({ children }) {
         {
             liList.map((list, index) =>
                 <li key={index}>{"2" + list.props.children}</li>
-            )
+            )            
         }
+        {
+            handle()
+        }
+        <h1>도서 조회</h1>
+            <table>
+                <tr>
+                    <th>도서명</th>
+                    <th>저자명</th>
+                    <th>출판사</th>
+                </tr>
+                {handle2()}
+            </table>
     </ul>;
 } //<ul>이 <DataListLayout>인 구조
 
