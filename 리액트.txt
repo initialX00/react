@@ -142,4 +142,62 @@ return은 필요에 따라 생략할 수 있다.
 userEffect(함수명, [ ])로 두번쨰 인자를 통해 의존성을 부여하여 특정 조건일 때만 실행하게 할 수 있다.
 두번째 인자의 값이 변할 때만 동작을 하며, 인자를 공백으로 하는 경우 최초 실행 시에만 동작한다.
 배열의 인자가 복수일 경우 or로 취급된다
+처음 실행시 useEffect가 호출은 되지만 useEffect 내의 함수들은 return때 실행된다.
+
+
+
+
+
+
+
+#비동기
+
+콜백함수 :: 함수의 매개변수로 전달되는 함수
+hoisting으로 인해 var, function은 최상단에서 실행된다.
+html로 요청하는 콜백함수는 비동기처럼 쓸 수 있고, 그외는 동기처럼 쓸 수 있다
+
+***중요***
+ㅇ Promise(resolve, reject)
+    then, catch, finally
+    
+ Promise 생성자 생성시 즉시 실행된다.
+    resolve: 결정하다, reject: 거부하다
+
+ then, catch, finally 콜백함수를 사용한다.
+    우선 순위가 낮아서 비동기 실행된다.
+    return이 Promise라서 키워드를 이어서 사용가능하다.
+    throw으로 에러처리하여 다음 catch로 전달
+    return으로 반환된 값이 다음 then에 전달
+
+ then 
+    resolve시 실행된다. reject때여도 실행이 안 될뿐이지 호출은 된다.
+     
+ catch
+    reject시 실행된다. resolve때여도 실행이 안 될뿐이지 호출은 된다.
+
+ then,catch는 Promise를 반환한다
+ const then = (fx) => {
+     return new Promise((resolve) => resolve(fx()));
+ }
+
+
+
+
+async / await
+
+ async로 함수를 비동기로 호출하고,
+ await으로 async 내부 함수의 비동기 연산을 기다린다.
+ 예외처리를 항상 해줘야한다.
+ then, catch, finally 쓰지 않아도 된다
+ 비동기함수에는 사용할 수 없다.
+
+ async 키워드를 함수에 사용하면 리턴 자료형이 Promise객체가 된다.
+
+ await의 키원드 사용 조건
+ Promise 객체 앞에 사용할 수 있다.
+ 1.await은 async 함수 안에서만 사용가능하다.
+ 2.await은 promise를 return하는 함수에만 사용가능하다.
+
+
+
 

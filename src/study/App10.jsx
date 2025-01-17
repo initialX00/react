@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
+/*
+    useEffect
+*/
+
 function App10(props) {
     const [ num1, setNum1 ] = useState(0);
     const [ num2, setNum2 ] = useState(0);
@@ -20,6 +24,7 @@ function App10(props) {
     //비동기가 아닌 동기로 실행을 원할때 사용한다.
     //처음 실행때 반드시 한번은 동작하고,
     //상태가 변할때 return을 반환한 후 다시 동작한다.
+    //마운트가 생성, 언마운트가 제거이다.
     const unmount = () => {
         console.log("장착해제됨");
     }
@@ -59,6 +64,9 @@ function App10(props) {
     const handleOnClick2 = () => {
         setNum1(num1 + 10);
     };
+
+    //useEffect가 호출은 됐지만 useEffect 내의 함수들은 return때 실행되어 ?????이 가장 먼저 출력된다.
+    console.log("??????")
 
     return (
         <div>
