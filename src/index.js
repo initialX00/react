@@ -1,13 +1,47 @@
 import ReactDOM from 'react-dom/client';
-//import App from './App';
+import App from './App';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import RouterDom from './components/RouterDom/RouterDom';
 //import App from './study/App';
-import App14 from './study/App14';
+//import App14 from './study/App14';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+//app1~17용
+//root.render(<App />);
 
-root.render(<App14 />);
+//Route랑 RouterDom용
+// root.render(
+//     <BrowserRouter>
+//         <Routes>
+//             <Route path='/a' element={ <><h1>A페이지</h1></> } />                        
+//             <Route path='/b' element={ <><h1>B페이지</h1></> } />
+//             <Route path='/c' element={ <><h1>C페이지</h1></> } />
+//             <Route path='/d' element={ <><h1>D페이지</h1></> } />
+//         </Routes>
+//     </BrowserRouter>
+// );
+
+//Route랑 RouterDom용
+// root.render(
+//     <RouterDom>
+
+//     </RouterDom>
+// )
+
+root.render(
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+);
+
+
+
+
+
+
+
 
 
 

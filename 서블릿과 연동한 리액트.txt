@@ -1,19 +1,49 @@
 
-mvn설치 - Jackson Databind
-pom.xml에 추가
-<dependency>
-    <groupId>com.fasterxml.jackson.core</groupId>
-    <artifactId>jackson-databind</artifactId>
-    <version>2.18.2</version>
-</dependency>
+ㅇ vscode에  npm install axios
+http요청 처리 라이브러리
 
-자바객체를 json으로 json객체를 자바객체로 바꿔줌
+ㅇ cors(교차 출처 리소스 공유)
 
 
-chrome웹스토어 JSON Viewer설치
+=========
 
 
-vscode에  npm install axios
+ㅇ npm install react-router-dom
+ (설치후 pacage.json에     "react-router-dom": "^7.1.3")
+라우팅 : url경로에 따라 다른 컴포넌트를 렌더링한다.
+
+ㅇ react router dom v6 튜토리얼로 공부 (v7를 사용하지만 v6과 공유한다)
+(component나 switch 키워드는 5버전이다)
+https://velog.io/@velopert/react-router-v6-tutorial
 
 
-cors(교차 출처 리소스 공유)
+ㅇ npm install @emotion/react
+   emotion에 의해 문자열이 css로 전환된다.
+   css임에도 조건문 등 작성이 가능해진다.
+
+ㅇ /**@jsxImportSource @emotion/react */로 css속성이 생긴다.
+   확장프로그램 vscode-styled-components 설치하여 css코드 자동완성 추가.
+
+ㅇ단축키 임의설정
+  file- preperences - configure snippets - javascriptreact에서 다음 코드 추가
+	"Emotion": {
+		"print to console": {
+			"prefix": "ej",
+			"body" : [
+				"/**@JsxImoprtSource @emotion/react */",
+				"import * as  s from  './style;'"
+			],
+			"description": "jsx @emotion/react import"
+		}
+	}
+
+ㅇ npm install react-icons 설치
+react icon사이트 이미지 임포트지원
+
+ㅇ quill editor 설치  npm install react-quill
+글쓰는사이트 기본 양식
+https://quilljs.com/docs 참고
+
+
+
+=====

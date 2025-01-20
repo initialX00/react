@@ -15,6 +15,8 @@ function App14(props) {
         }
     }
 
+
+
     /*
         BookRestServlet(/api/book)
         get요청
@@ -29,10 +31,8 @@ function App14(props) {
         const handleBookRequestOnClick = async () => {
             let response = null;
             try {
-                response = await axios.get("http://localhost:8080/servlet_study_war/api/user");
-                //get이 Promise를 리턴함
+                response = await axios.get("http://localhost:8080/servlet_study_war/api/book");
                 console.log(response);
-                console.log(response.data.username);
             } catch(error) {
                 console.error(error);
             }
