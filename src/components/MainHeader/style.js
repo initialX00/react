@@ -6,8 +6,8 @@ export const layout = css`
     justify-content: space-between;
     margin-bottom: 20px;
     border-bottom: 2px solid #dbdbdb;
-    padding: 25px 10px 10px;
     width: 100%;
+    padding: 25px 10px 10px;
 
     & a {
         text-decoration: none;
@@ -24,7 +24,6 @@ export const layout = css`
 export const leftContainer = css`
     display: flex;
     align-items: center;
-    
 
     & > a > h1 {
         margin: 0;
@@ -43,10 +42,10 @@ export const leftContainer = css`
             margin-left: 30px;
             padding: 5px 10px;
             font-weight: 600;
-            transition: all o.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
             color: #666666;
 
-            & > svg {//이미지
+            & > svg {
                 margin-right: 5px;
             }
 
@@ -78,7 +77,7 @@ export const rightContainer = css`
             &::after {
                 content: "";
                 position: absolute;
-                bottom: 0;
+                bottom: 0px;
                 border: 0px solid #222222;
                 width: 0%;
                 transition: all 0.2s ease-in-out;
