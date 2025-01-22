@@ -1,10 +1,8 @@
 /**@jsxImportSource @emotion/react */
 import axios from 'axios';
 import * as s from './style';
-
 import React, { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
-import { jsx } from 'react/jsx-runtime';
 
 function WritePage(props) {
 
@@ -29,15 +27,13 @@ function WritePage(props) {
         ['clean']                                         // remove formatting button
       ];
 
-
-    useEffect(() => {
+      useEffect(() => {
         const head = document.querySelector("head");
         const link = document.createElement("link");
         link.rel = "stylesheet";
         link.href = "https://unpkg.com/react-quill@1.3.3/dist/quill.snow.css";
         head.appendChild(link);
     }, []);
-
 
     const [ inputValue, setInputValue ] = useState({
         title: "",
@@ -48,7 +44,7 @@ function WritePage(props) {
         setInputValue({
             ...inputValue,
             [e.target.name]: e.target.value,
-        })
+        });
     }
 
     //quill은 매개변수로 value값을 가지고 온다
@@ -56,33 +52,36 @@ function WritePage(props) {
         setInputValue({
             ...inputValue,
             content: value,
-        })
+        });
     }
 
-
-    const handleWriteSubitOnClick = async () => {
+    const handleWriteSubmitOnClick = async () => {
         try {
             //axios는 post요청때 자동으로 json으로 변환해준다
-            const response = await axios.post("http://localhost:8080/servlet_study_war/api/board", inputValue); 
+            const response = await axios.post("http://localhost:8080/servlet_study_war/api/board", inputValue);
+            console.log(response);
+            alert("게시글 작성 완료");
+            
         } catch(error) {
-
-        }     
+            console.error(error);
+        }
     }
 
     return (
         <div>
             <div css={s.headerLayout}>
-                <button onClick={handleWriteSubitOnClick}>작성하기</button>
+                <button onClick={handleWriteSubmitOnClick}>작성하기</button>
             </div>
 
             <div css={s.titleLayout}>
                 <input type="text" 
-                    placeholder='여기에 제목을 입력하세요'
+                    placeholder='여기에 제목을 입력하세요.'
                     name='title'
                     value={inputValue.title}
                     onChange={handleInputOnChange}
-                 />
+                />
             </div>
+
             <ReactQuill 
                 modules={{
                     toolbar: toolbarOptions,
