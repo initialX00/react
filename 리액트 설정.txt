@@ -78,3 +78,10 @@ pom.xml에 추가
 
 ㅇ chrome웹스토어 JSON Viewer,Formatter설치
 
+
+ㅇ npm install recoil
+클라이언트 상태(지역데이터) 관리
+
+ㅇ npm install react-query
+서버 상태(전역데이터) 관리
+

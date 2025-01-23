@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 
 function WritePage(props) {
-
+    //Quill - 글쓰기 사이트 기본 양식 제공
     const toolbarOptions = [
         ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
         ['blockquote', 'code-block'],

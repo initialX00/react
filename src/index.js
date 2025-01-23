@@ -2,12 +2,14 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import RouterDom from './components/RouterDom/RouterDom';
+import { RecoilRoot } from 'recoil';
+import { QueryClient, QueryClientProvider } from 'react-query';
 //import App from './study/App';
 //import App14 from './study/App14';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
+const queryClient = new QueryClient(); //전역상태저장
 //app1~17용
 //root.render(<App />);
 
@@ -30,10 +32,16 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 //     </RouterDom>
 // )
 
+//<RecoilRoot> atom에 저장, 일반적인 상태값
+//QueryClient에 전역상태 저장, 서버와 주고받은 상태값
 root.render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>
+    <RecoilRoot> 
+        <QueryClientProvider client={queryClient}>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </QueryClientProvider>
+    </RecoilRoot>
 );
 
 
