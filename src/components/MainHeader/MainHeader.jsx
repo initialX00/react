@@ -2,19 +2,24 @@
 
 import React, { useEffect, useState } from 'react';
 import * as s from './style';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { LuUserRoundPlus , LuLogIn, LuLogOut, LuUser,LuLayoutList, LuNotebookPen } from "react-icons/lu";
-import { useRecoilState } from 'recoil';
-import { authUserIdAtomSate } from '../../atoms/authAtom';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { authUserIdAtomState } from '../../atoms/authAtom';
 import axios from 'axios';
 import { useQuery, useQueryClient } from 'react-query';
+import { accessTokenAtomState } from '../../atoms/authAtom';
 //react icons에서 퍼온 이미지들
 
 
 //a태크는 페이지를 새로 랜더링, Link는 상태를 유지하여 이동 (Link는 a태그로 호출된다)
 function MainHeader(props) {
+    const naviagte = useNavigate();
     const queryClient = useQueryClient();
     const userId = queryClient.getQueryData(["authenticatedUserQuery"])?.data.body;
+    const [ accessToken, setAccessToken ] = useRecoilState(accessTokenAtomState);
+
+    console.log(queryClient.getQueryCache());
 
     const getUserApi = async () => {
         return await axios.get("http://localhost:8080/servlet_study_war/api/user", {
@@ -28,13 +33,24 @@ function MainHeader(props) {
     }
 
     const getUserQuery = useQuery(
-        ["getUserQuery", userId],
+        ["getUserQuery"],
         getUserApi,
         {
+            retry: 0,
             refetchOnWindowFocus: false,
             enabled: !!userId, //useQuery가 비동기이기에 동기적으로 실행을 위해서 
         }
     );
+
+    const handleLogoutOnClick = () => {
+        localStorage.removeItem("AccessToken");
+        console.log(localStorage.getItem("AccessToken"));
+        setAccessToken(localStorage.getItem("AccessToken"));
+        //queryClient.invalidateQueries(["authenticatedUserQuery"]); //캐쉬 삭제
+        queryClient.removeQueries(["authenticatedUserQuery"]); //원래는 inval를 써야하는데 오류때문에 리무브로
+        Navigate("/signin");
+
+    }
     
 
     // const [ userId, setUserId ] = useRecoilState(authUserIdAtomSate);
@@ -83,11 +99,11 @@ function MainHeader(props) {
                     !!userId ?
                     <ul>
                         <Link to={"/mypage"} >
-                            <li><LuUser />{getUserQuery.isLoading ? "" : getUserQuery.data.data.username}</li>
+                            <li><LuUser />{getUserQuery.isLoading ? "" : getUserQuery.data.data.body.username}</li>
                         </Link>
-                        <Link to={"/logout"} >
+                        <a onClick={handleLogoutOnClick} >
                             <li><LuLogOut />로그아웃</li>
-                        </Link>
+                        </a>
                     </ul>
                     :
                     <ul>

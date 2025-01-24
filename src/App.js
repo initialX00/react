@@ -10,11 +10,15 @@ import SigninPage from "./pages/SigninPage/SigninPage";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRecoilState } from "recoil";
-import { authUserIdAtomSate } from "./atoms/authAtom";
+import { accessTokenAtomState } from "./atoms/authAtom";
 import { useQuery } from "react-query";
 
 function App() {
-  const location = useLocation();
+  const [ accessToken, setAccessToken ] = useRecoilState(accessTokenAtomState);
+
+  useEffect(() => {
+    authenticatedUserQuery.refetch();
+  }, [accessToken]);
 
   const authenticatedUser = async () => {
     return await axios.get("http://localhost:8080/servlet_study_war/api/authenticated", {
@@ -27,11 +31,13 @@ function App() {
   //useQuery가 호출된 순간 useEffect처럼 작동한다.
   //useQuery는 enabled속성이 true여야만 작동한다.
   const authenticatedUserQuery = useQuery(
-    ["authenticatedUserQuery"], 
-    authenticatedUser, 
-    {
-      refetchOnWindowFocus: false,
-      enabled: !!localStorage.getItem("AccessToken"),
+    ["authenticatedUserQuery"], //key값
+    authenticatedUser, //함수
+    {                     
+      retry: 0,
+      refetchOnWindowFocus: false,  //옵션
+      enabled: !!accessToken,
+      //enabled: !!localStorage.getItem("AccessToken"), //해당 코드가 true여야만 실행
     }
   );
 
@@ -82,20 +88,20 @@ function App() {
       <Global styles={global} />
 
       {
-        authenticatedUserQuery.isLoading
+        authenticatedUserQuery.isLoading 
         //랜더링과 업데이트 사이동안 일어나는 변화를 막기위해 로딩 중에는 빈값을 출력 
-        ?
-         <></>
+        ? 
+          <></>
         :
-      <MainLayout>
-        <Routes>
-          <Route path="/" element={ <IndexPage /> } />
-          <Route path="/write" element={ <WritePage /> } />
-          <Route path="/list" element={ <ListPage /> } />
-          <Route path="/signup" element={ <SignupPage /> } />
-          <Route path="/signin" element={ <SigninPage /> } />
-        </Routes>
-      </MainLayout>
+          <MainLayout>
+            <Routes>
+              <Route path="/" element={ <IndexPage /> } />
+              <Route path="/write" element={ <WritePage /> } />
+              <Route path="/list" element={ <ListPage /> } />
+              <Route path="/signup" element={ <SignupPage /> } />
+              <Route path="/signin" element={ <SigninPage /> } />
+            </Routes>
+          </MainLayout>
       }
     </>
   );
